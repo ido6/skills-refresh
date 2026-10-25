@@ -29,7 +29,7 @@ cp -r skills-refresh/skills-refresh ~/.claude/skills/
 
   Everything else goes into the report as a proposal.
 
-To run it every two weeks in the Claude desktop app, create a scheduled task with the cron expression `0 10 1,15 * *` (10:00 on the 1st and 15th of each month) and the prompt `Run /skills-refresh scheduled`.
+To run it every two weeks in the Claude desktop app, create a scheduled task with the cron expression `0 10 1,15 * *` (10:00 on the 1st and 15th of each month) and this prompt: `Read ~/.claude/skills/skills-refresh/SKILL.md and follow it in scheduled mode.` The skill can only be loaded by a typed `/skills-refresh`, so a scheduled run has to read the file directly.
 
 ## Files it writes
 
