@@ -52,7 +52,7 @@ Claude loads it on its own whenever an AI image or video prompt is written or ed
 1. It splits the prompt into needs, such as acting, camera work, character sheet, UGC or product stills.
 2. It searches every connected source that could hold a match:
    - Higgsfield workflows, recipes, preset galleries and marketplace apps;
-   - idoGen workflows, which hold the acting, video-brain and image-brain skills;
+   - idoGen workflows;
    - your local skills.
 3. It picks the best skill for each need and reads it, including the reference files that apply.
 4. It uses those skills to write, improve, fix or change the prompt.

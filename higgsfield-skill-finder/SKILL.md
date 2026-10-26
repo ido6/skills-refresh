@@ -20,8 +20,8 @@ Read the prompt (and any attached media) and list every **need** it carries. A p
 
 | Need | Signals in the prompt | Usual skill (source) |
 |---|---|---|
-| **acting** | a person or character reacts, speaks, shows emotion, ensemble, lip-sync, talking head | `idogen-acting` (idoGen) |
-| **cinematic video** | any video shot, camera move, lens, lighting, multi-shot geography, a model's prompt dialect (single-shot Seedance, Kling, Veo) | `idogen-video-brain` (idoGen) |
+| **acting** | a person or character reacts, speaks, shows emotion, ensemble, lip-sync, talking head | none fixed: search the catalogs; if nothing fits, write the performance yourself (step 5) |
+| **cinematic video** | any video shot, camera move, lens, lighting, blocking, color grade | `cinematography` (local) |
 | **image craft** | stills, references, plates, cross-shot consistency | `idogen-image-brain` (idoGen) |
 | **multishot omni reference** | several @Image refs assigned across shots in one Seedance 2.5 generation | `seedance-25` (local) |
 | **previz / blocking** | Blender, blockout, camera plan before paid video, multi-cam dialogue | `blender-to-seedance` (local), `idogen-auteur-previz` (idoGen) |
@@ -47,12 +47,12 @@ Presets and marketplace apps hold effects, product motion, motion transfer, imag
 - **Higgsfield recipes and commands:** `get_preset_instructions` with no `preset` lists recipes (`/hero-shot`, `/reel-cover`, ...), production commands, and Katana titles.
 - **Higgsfield preset galleries:** `get_presets` with `query` set to one or two words of the need (for example "dialogue", "crying", "product spin"). Search one need per call; omit `source` to cover Viral and Marketing Studio, and use `source: "genjutsu"` or `"soul"` when the need is motion transfer or an image style. Browsing only; don't open widgets or pass `initial_inputs`.
 - **Higgsfield marketplace apps:** `apps_search` with a short query per need.
-- **idoGen workflows:** `list_workflows`. This is where acting lives: `idogen-acting`, `idogen-video-brain` and `idogen-image-brain` are adapted from a production studio's ACTING, CINEDANCE and LIRA systems, which have no Higgsfield catalog entry.
+- **idoGen workflows:** `list_workflows`. Never pick `idogen-acting` or `idogen-video-brain`; they are retired.
 - **Local skills:** the skills already listed in your context, plus the folders `~/.claude/skills/higgsfield-*`. Those are local copies of Higgsfield workflows and don't appear in your skill list. A local `higgsfield-<name>` copy and the live workflow `<name>` are one skill: match the need against the catalog once, then load it from the local copy (step 4).
 
 ## 3. Pick the best skills
 
-Rank by how much each skill changes the prompt's result. Keep it tight: one skill per need, two only when they cover different layers (for example `idogen-video-brain` for camera plus `idogen-acting` for performance). Done when every need has a pick or an explicit "no skill needed", and nothing duplicates.
+Rank by how much each skill changes the prompt's result. Keep it tight: one skill per need, two only when they cover different layers (for example `cinematography` for camera plus `seedance-25` for a multishot reference sequence). Done when every need has a pick or an explicit "no skill needed", and nothing duplicates.
 
 If the user asked only which skills fit, show the picks as a table (need, skill, source, why) and stop here.
 
@@ -76,9 +76,11 @@ Apply what the skills say to the job:
 - **fix**: name the cause of the bad result in skill terms, then change only what causes it.
 - **change**: make the requested edit and keep everything else, including locked identity, location and lighting.
 
+With no acting skill, write performance as visible behaviour: what the body, breath, eyes and hands do, beat by beat, never emotion words alone.
+
 When the scene has speech (argue, talk, pitch) but the user gave no lines, play it through bodies and sound without spoken words, and offer in the hand-back to add lines the user writes. Skills that forbid inventing dialogue win over guessing lines.
 
-Follow the target model's dialect when a skill defines one (Seedance 2.0 vs 2.5, Kling, Veo, nano banana). When two skills conflict, the one owning that layer wins: acting owns performance, video-brain owns camera and shot, image-brain owns stills.
+Follow the target model's dialect when a skill defines one (Seedance 2.0 vs 2.5, Kling, Veo, nano banana). When two skills conflict, the one owning that layer wins: an acting skill owns performance, `cinematography` owns camera and shot, image-brain owns stills.
 
 Done when every need from step 1 shows up in the prompt and every rule the skills mark as required for this shot is met.
 
