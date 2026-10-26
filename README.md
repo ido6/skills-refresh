@@ -3,7 +3,7 @@
 Two Claude Code skills:
 
 - **`skills-refresh`** keeps your `~/.claude` setup current.
-- **`higgsfield-skill-finder`** finds and loads the skills a generation prompt needs (acting, camera, character sheets, UGC, product shots, presets).
+- **`higgsfield-skill-finder`** finds the best skills for a generation prompt (acting, camera, character sheets, UGC, product shots, presets) and uses them to write, improve, fix or change the prompt.
 
 ## skills-refresh
 
@@ -47,16 +47,17 @@ To run it every two weeks in the Claude desktop app, create a scheduled task wit
 
 ## higgsfield-skill-finder
 
-Claude loads it on its own before writing or fixing an AI image or video prompt. You can also ask "which skills fit this prompt?".
+Claude loads it on its own whenever an AI image or video prompt is written or edited. You can also ask "which skills fit this prompt?".
 
 1. It splits the prompt into needs, such as acting, camera work, character sheet, UGC or product stills.
-2. It searches every connected source:
+2. It searches every connected source that could hold a match:
    - Higgsfield workflows, recipes, preset galleries and marketplace apps;
    - idoGen workflows, which hold the acting, video-brain and image-brain skills;
    - your local skills.
-3. It returns a short table of the skills that fit, then loads them.
+3. It picks the best skill for each need and reads it, including the reference files that apply.
+4. It uses those skills to write, improve, fix or change the prompt.
 
-It only searches and reads, so it never spends generation credits. It works with whichever of the Higgsfield and idoGen connectors you have connected.
+It returns the final prompt, ready to paste, plus the generation settings (model, duration, audio, negative prompt), which skills it used, and what changed. It never generates anything, so it spends no credits.
 
 Install:
 
