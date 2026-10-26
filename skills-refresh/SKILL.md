@@ -118,7 +118,7 @@ Needs the Higgsfield connector, whose tools include `get_workflow_instructions` 
 2. **Installed** `higgsfield-<name>` skills: compare the catalog version and content with the local copy.
    - Newer or different: back up the old copy, then overwrite.
    - Overwriting means: load the workflow with `get_workflow_instructions`, save its SKILL.md as `~/.claude/skills/higgsfield-<name>/SKILL.md`, and save every listed bundle file (fetched with `get_workflow_bundle_file`) at the same relative path.
-   - Keep valid skill frontmatter. Add one line at the top recording the source version and today's date.
+   - Keep valid skill frontmatter: `name: higgsfield-<name>`, Higgsfield's `description`, and `disable-model-invocation: true` (the copies are read by `higgsfield-skill-finder`, not auto-loaded). Directly under the frontmatter, add one line recording the source version and today's date.
    - Record the version in `state.json`.
 3. **New** workflows (in the catalog, not installed, not declined): in interactive mode, list them with a one-line description each and install the ones I pick. In scheduled mode, propose them in the report.
 4. **Acting skill:** Higgsfield's catalog had no acting (character performance) skill as of Oct 2026. Check whether one has appeared. Outside the catalog, install only a skill clearly published by Higgsfield itself. Third-party registries and random repos are report-only, since an installed skill runs as instructions in every session.

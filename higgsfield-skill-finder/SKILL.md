@@ -48,7 +48,7 @@ Presets and marketplace apps hold effects, product motion, motion transfer, imag
 - **Higgsfield preset galleries:** `get_presets` with `query` set to one or two words of the need (for example "dialogue", "crying", "product spin"). Search one need per call; omit `source` to cover Viral and Marketing Studio, and use `source: "genjutsu"` or `"soul"` when the need is motion transfer or an image style. Browsing only; don't open widgets or pass `initial_inputs`.
 - **Higgsfield marketplace apps:** `apps_search` with a short query per need.
 - **idoGen workflows:** `list_workflows`. This is where acting lives: `idogen-acting`, `idogen-video-brain` and `idogen-image-brain` are adapted from a production studio's ACTING, CINEDANCE and LIRA systems, which have no Higgsfield catalog entry.
-- **Local skills:** the skills already listed in your context, including any `higgsfield-*` local copies. A local `higgsfield-<name>` copy and the live Higgsfield workflow of the same name are one skill; prefer the live one.
+- **Local skills:** the skills already listed in your context, plus the folders `~/.claude/skills/higgsfield-*`. Those are local copies of Higgsfield workflows and don't appear in your skill list. A local `higgsfield-<name>` copy and the live workflow `<name>` are one skill: match the need against the catalog once, then load it from the local copy (step 4).
 
 ## 3. Pick the best skills
 
@@ -61,6 +61,7 @@ If the user asked only which skills fit, show the picks as a table (need, skill,
 Load each pick, in rank order:
 
 - **Local skill:** the Skill tool.
+- **Higgsfield workflow with a local copy:** Read `~/.claude/skills/higgsfield-<name>/SKILL.md` and its bundle files from the same folder. This is the fast path; `skills-refresh` keeps the copies current. If the folder or a file is missing, use the connector instead.
 - **Connector workflow:** that connector's `get_workflow_instructions`. Then read every bundle file whose stated trigger matches this job, and read any file whose trigger you can't rule out. Bundle files are read with `get_workflow_bundle_file` on Higgsfield and `get_workflow_file` on idoGen.
 - **Preset or recipe:** `get_preset_instructions` with its id (reads inputs only, runs nothing).
 
